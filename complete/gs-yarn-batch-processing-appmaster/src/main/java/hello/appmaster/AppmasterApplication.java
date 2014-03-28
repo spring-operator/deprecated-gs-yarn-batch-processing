@@ -31,9 +31,9 @@ public class AppmasterApplication {
 	@Bean
 	public Job job() throws Exception {
 		return jobFactory.get("job")
-				.incrementer(jobParametersIncrementer())
-				.start(master())
-				.build();
+			.incrementer(jobParametersIncrementer())
+			.start(master())
+			.build();
 	}
 
 	@Bean
@@ -44,10 +44,10 @@ public class AppmasterApplication {
 	@Bean
 	protected Step master() throws Exception {
 		return stepFactory
-				.get("master")
-				.partitioner("remoteStep", partitioner())
-				.partitionHandler(partitionHandler())
-				.build();
+			.get("master")
+			.partitioner("remoteStep", partitioner())
+			.partitionHandler(partitionHandler())
+			.build();
 	}
 
 	@Bean

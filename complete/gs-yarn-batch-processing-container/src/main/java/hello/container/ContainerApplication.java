@@ -27,9 +27,9 @@ public class ContainerApplication {
 	@Bean
 	protected Step remoteStep() throws Exception {
 		return stepBuilder
-				.get("remoteStep")
-				.tasklet(tasklet())
-				.build();
+			.get("remoteStep")
+			.tasklet(tasklet())
+			.build();
 	}
 
 	public static void main(String[] args) {
