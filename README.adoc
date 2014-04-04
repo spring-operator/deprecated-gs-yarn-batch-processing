@@ -28,6 +28,7 @@ projects: [spring-hadoop]
 :yarn_base_appmaster: gs-yarn-batch-processing-appmaster
 :yarn_base_container: gs-yarn-batch-processing-container
 :yarn_base_client: gs-yarn-batch-processing-client
+:yarn_base_dist: gs-yarn-batch-processing-dist
 This guide walks you through the process of executing a Spring Batch job on Hadoop YARN.
 
 == What you'll build
@@ -37,12 +38,10 @@ Spring Batch and Spring Boot.
 
 == What you'll need
 
- - About 15 minutes
- - A favorite text editor or IDE
- - http://www.oracle.com/technetwork/java/javase/downloads/index.html[JDK {java_version}] or later
- - http://www.gradle.org/downloads[Gradle 1.8+]
- - Cluster or local single-node instance based on Hadoop 2.2.0 or later
- - You can also import the code from this guide as well as view the web page directly into link:/guides/gs/sts[Spring Tool Suite (STS)] and work your way through it from there.
+include::https://raw.github.com/spring-guides/getting-started-macros/master/prereq_editor_jdk_buildtools.adoc[]
+ - Local single-node instance based on Hadoop 2.2.0 or later
+
+NOTE: Testing this sample application don't need existing or running Hadoop instance.
 
 include::https://raw.github.com/spring-guides/getting-started-macros/master/how_to_complete_this_guide.adoc[]
 
@@ -176,26 +175,19 @@ include::complete/gs-yarn-batch-processing-client/src/main/java/hello/client/Cli
 `ClientApplication` is similar what we've used in other examples and
 its only purpose is to submit an application.
 
+include::https://raw.github.com/spring-guides/getting-started-macros/master/build_yarn_application.adoc[]
+
 == Run the Application
 
 Now that you've successfully compiled and packaged your application,
 it's time to do the fun part and execute it on a Hadoop YARN.
 
-Below listing shows files after a succesfull gradle build.
-
-[source]
-----
-$ ls -lt build/libs/
--rw-r--r-- 1 hadoop hadoop 37385828 Mar 23 12:39 gs-yarn-batch-processing-container-0.1.0.jar
--rw-r--r-- 1 hadoop hadoop 37384804 Mar 23 12:39 gs-yarn-batch-processing-client-0.1.0.jar
--rw-r--r-- 1 hadoop hadoop 37384708 Mar 23 12:39 gs-yarn-batch-processing-appmaster-0.1.0.jar
-----
-
 Simply run your executable client jar.
 
 [source]
 ----
-$ java -jar build/libs/gs-yarn-batch-processing-client-0.1.0.jar
+$ cd gs-yarn-batch-processing-dist
+$ java -jar target/gs-yarn-batch-processing-dist/gs-yarn-batch-processing-client-0.1.0.jar
 ----
 
 If application executes successfully you should be able to see two steps executed on a YARN.
@@ -205,10 +197,10 @@ If application executes successfully you should be able to see two steps execute
 Below is a class which can be used to execute this application as a
 JUnit test without running Hadoop cluster.
 
-`src/test/java/hello/AppTests.java`
+`gs-yarn-batch-processing-dist/src/test/java/hello/AppTests.java`
 [source,java]
 ----
-include::complete/src/test/java/hello/AppTests.java[]
+include::complete/gs-yarn-batch-processing-dist/src/test/java/hello/AppIT.java[]
 ----
 
 == Summary

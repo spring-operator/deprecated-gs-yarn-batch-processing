@@ -10,7 +10,6 @@ import hello.client.ClientApplication;
 import java.io.File;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.hadoop.yarn.api.records.YarnApplicationState;
 import org.junit.Test;
@@ -21,16 +20,12 @@ import org.springframework.yarn.test.junit.ApplicationInfo;
 import org.springframework.yarn.test.support.ContainerLogUtils;
 
 @MiniYarnClusterTest
-public class AppTests extends AbstractBootYarnClusterTests {
+public class AppIT extends AbstractBootYarnClusterTests {
 
 	@Test
 	public void testAppSubmission() throws Exception {
 
-		String[] args = new String[] {
-				"--spring.yarn.client.files[0]=file:build/libs/gs-yarn-batch-processing-appmaster-0.1.0.jar",
-				"--spring.yarn.client.files[1]=file:build/libs/gs-yarn-batch-processing-container-0.1.0.jar" };
-
-		ApplicationInfo info = submitApplicationAndWait(ClientApplication.class, args, 1, TimeUnit.MINUTES);
+		ApplicationInfo info = submitApplicationAndWait(ClientApplication.class, new String[0]);
 		assertThat(info.getYarnApplicationState(), is(YarnApplicationState.FINISHED));
 
 		List<Resource> resources = ContainerLogUtils.queryContainerLogs(getYarnCluster(), info.getApplicationId());
