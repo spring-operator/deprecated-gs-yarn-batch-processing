@@ -147,6 +147,19 @@ include::complete/gs-yarn-batch-processing-container/src/main/java/hello/contain
 - We defined `PrintTasklet` as `@Bean`
 - We created a step as `@Bean` and instructed it to execute a tasklet.
 
+Here you create a `application.yml` file for container.
+
+`gs-yarn-batch-processing-container/src/main/resources/application.yml`
+[source,yaml]
+----
+include::complete/gs-yarn-batch-processing-container/src/main/resources/application.yml[]
+----
+
+- We disable batch functionality in Boot core to use a YARN specific.
+- We could optionally add Hadoop configuration for HDFS.
+- We enable batch processing on YARN by using
+  `spring.yarn.batch.enable` property.
+
 == Create a Batch Job
 
 Here you create a `AppmasterApplication` class.
@@ -161,6 +174,20 @@ include::complete/gs-yarn-batch-processing-appmaster/src/main/java/hello/appmast
   on appmaster. 
 - We `@AutoWired` builders for steps and jobs.
 
+Here you create a `application.yml` file for appmaster.
+
+`gs-yarn-batch-processing-appmaster/src/main/resources/application.yml`
+[source,yaml]
+----
+include::complete/gs-yarn-batch-processing-appmaster/src/main/resources/application.yml[]
+----
+
+- We disable batch functionality in Boot core to use a YARN specific.
+- We could optionally add Hadoop configuration for HDFS.
+- We enable batch processing on YARN by using
+  `spring.yarn.batch.enable` property.
+- We define a job named `job` to run automatically.
+- We enable a job named `job` and allow it to do a next operation.
 
 == Create a Yarn Client
 
@@ -174,6 +201,17 @@ include::complete/gs-yarn-batch-processing-client/src/main/java/hello/client/Cli
 
 `ClientApplication` is similar what we've used in other examples and
 its only purpose is to submit an application.
+
+Here you create a `application.yml` file for client.
+
+`gs-yarn-batch-processing-client/src/main/resources/application.yml`
+[source,yaml]
+----
+include::complete/gs-yarn-batch-processing-client/src/main/resources/application.yml[]
+----
+
+- Here we simply defined all needed files for the application needed
+  for submission.
 
 include::https://raw.github.com/spring-guides/getting-started-macros/master/build_yarn_application.adoc[]
 
