@@ -3,7 +3,7 @@ buildscript {
         maven { url "http://repo.spring.io/libs-release" }
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.0.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.1.RELEASE")
     }
 }
 
@@ -21,7 +21,7 @@ subprojects { subproject ->
         maven { url "http://repo.spring.io/libs-release" }
     }
     dependencies {
-        compile("org.springframework.data:spring-yarn-boot:2.0.0.RELEASE")
+        compile("org.springframework.data:spring-yarn-boot:2.1.0.RELEASE")
     }
     task copyJars(type: Copy) {
         from "$buildDir/libs"
@@ -42,16 +42,16 @@ project('gs-yarn-batch-processing-client') {
 project('gs-yarn-batch-processing-appmaster') {
     apply plugin: 'spring-boot'
     dependencies {
-        compile("org.springframework.data:spring-yarn-batch:2.0.0.RELEASE")
-        runtime("org.springframework.boot:spring-boot-starter-batch:1.1.0.RELEASE")
+        compile("org.springframework.data:spring-yarn-batch:2.1.0.RELEASE")
+        runtime("org.springframework.boot:spring-boot-starter-batch:1.2.1.RELEASE")
     }
 }
 
 project('gs-yarn-batch-processing-container') {
     apply plugin: 'spring-boot'
     dependencies {
-        compile("org.springframework.data:spring-yarn-batch:2.0.0.RELEASE")
-        runtime("org.springframework.boot:spring-boot-starter-batch:1.1.0.RELEASE")
+        compile("org.springframework.data:spring-yarn-batch:2.1.0.RELEASE")
+        runtime("org.springframework.boot:spring-boot-starter-batch:1.2.1.RELEASE")
     }
 }
 
@@ -60,7 +60,7 @@ project('gs-yarn-batch-processing-dist') {
         compile project(":gs-yarn-batch-processing-client")
         compile project(":gs-yarn-batch-processing-appmaster")
         compile project(":gs-yarn-batch-processing-container")
-        testCompile("org.springframework.data:spring-yarn-boot-test:2.0.0.RELEASE")
+        testCompile("org.springframework.data:spring-yarn-boot-test:2.1.0.RELEASE")
         testCompile("org.hamcrest:hamcrest-core:1.2.1")
         testCompile("org.hamcrest:hamcrest-library:1.2.1")
     }
