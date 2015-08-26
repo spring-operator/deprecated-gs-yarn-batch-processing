@@ -253,3 +253,5 @@ include::complete/gs-yarn-batch-processing-dist/src/test/java/hello/AppIT.java[]
 
 Congratulations! You've just developed a Spring YARN application
 executing a Spring Batch job! 
+
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/footer.adoc[]
