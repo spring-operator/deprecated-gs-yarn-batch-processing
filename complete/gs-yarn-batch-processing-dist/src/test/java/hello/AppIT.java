@@ -10,6 +10,7 @@ import hello.client.ClientApplication;
 import java.io.File;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.hadoop.yarn.api.records.YarnApplicationState;
 import org.junit.Test;
@@ -25,7 +26,7 @@ public class AppIT extends AbstractBootYarnClusterTests {
 	@Test
 	public void testAppSubmission() throws Exception {
 
-		ApplicationInfo info = submitApplicationAndWait(ClientApplication.class, new String[0]);
+		ApplicationInfo info = submitApplicationAndWait(ClientApplication.class, new String[0], 120, TimeUnit.SECONDS);
 		assertThat(info.getYarnApplicationState(), is(YarnApplicationState.FINISHED));
 
 		List<Resource> resources = ContainerLogUtils.queryContainerLogs(getYarnCluster(), info.getApplicationId());
